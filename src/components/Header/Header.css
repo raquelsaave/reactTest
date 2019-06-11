@@ -1,0 +1,15 @@
+*{
+    color:rgb(16, 140, 145);
+}
+.header{
+    display:flex;
+    background-color: lightgray;
+    justify-content: space-around;
+    height: 100px;
+    align-items: center;
+}
+
+.btn.btn-primary{
+    background-color: rgb(16, 140, 145);
+    color: White;
+}
