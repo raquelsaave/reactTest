@@ -17,17 +17,27 @@ function checkResponse(response) {
   throw error;
 }
 
-
 function handleError(error) {
   console.log(error);
   return [];
 }
+
+function createQuery(queryObject) {
+    return `?${Object.keys(queryObject)
+        .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(queryObject[key])}`)
+        .join('&')}`;
+  }
 
 // recibe un path, hacemos un rest application 
 function getData(path) {
   return fetch(`${API_URL}/${path}`).then(checkResponse).then(parseResponse).catch(handleError);
 }
 
+function getDataWithQuery(queryObject,  path) {
+    return getData(`${path}${createQuery(queryObject)}`);
+}
+
 export {
   getData,
+  getDataWithQuery,
 };

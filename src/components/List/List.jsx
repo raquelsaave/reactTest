@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-// Component
-import Item from './Item/Item'
 // Actions
 import { getData } from '../../utils/api';
+// Component
+import Item from './Item/Item'
 
 class List extends Component{
     constructor(props){
