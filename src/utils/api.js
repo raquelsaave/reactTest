@@ -33,7 +33,7 @@ function getData(path) {
   return fetch(`${API_URL}/${path}`).then(checkResponse).then(parseResponse).catch(handleError);
 }
 
-function getDataWithQuery(queryObject,  path) {
+function getDataWithQuery(path, queryObject) {
     return getData(`${path}${createQuery(queryObject)}`);
 }
 

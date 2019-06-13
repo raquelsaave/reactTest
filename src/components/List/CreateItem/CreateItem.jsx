@@ -5,10 +5,8 @@ import { postData } from '../../../utils/api';
 import ItemForm from '../ItemForm/ItemForm'
 
 //Components
-import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Alert from 'react-bootstrap/Alert';
-import Form from 'react-bootstrap/Form'
 
 class CreateItem extends Component {
     constructor(props) {

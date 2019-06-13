@@ -40,6 +40,7 @@
 // export default Login;
 
 import React, { Component } from 'react';
+import * as Yup from 'yup';
 import { Redirect } from 'react-router-dom/';
 
 import Form from 'react-bootstrap/Form';
@@ -58,6 +59,8 @@ class Login extends Component {
       password: '',
       loginError: false,
       loggedIn: false,
+      usernameValid: true,
+      passwordValid: true,
     }
 
     this.updateUsername = this.updateUsername.bind(this);
@@ -85,7 +88,15 @@ class Login extends Component {
   }
 
   logIn() {
-    getDataWithQuery(({...this.state}), 'users').then(this.checkUser);
+    const usernameValidation = Yup.string().required().isValid(this.state.username);
+    const passwordValidation = Yup.string().required().isValid(this.state.password); 
+    Promise.all([usernameValidation, passwordValidation])
+      .then(([usernameValid, passwordValid]) => {
+        this.setState({usernameValid, passwordValid});
+        if(usernameValid && passwordValid) {
+          getDataWithQuery('users', {...this.state}).then(this.checkUser);
+        }
+      });
   }
 
   render() {
@@ -109,6 +120,7 @@ class Login extends Component {
               placeholder="Username"
               value={this.state.username}
               onChange={this.updateUsername}
+              isInvalid={!this.state.usernameValid}
             />
           </Form.Group>
 
@@ -119,6 +131,7 @@ class Login extends Component {
               placeholder="Password"
               value={this.state.password}
               onChange={this.updatePassword}
+              isInvalid={!this.passwordValid}
             />
           </Form.Group>
         </Modal.Body>
