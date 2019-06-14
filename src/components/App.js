@@ -29,7 +29,8 @@ function App() {
     {//Route no permite pasar propiedades directamente de los componentes, por lo que hacemos un arrow function
     }
     <Route path="/list" component={List} />
-    </BrowserRouter>
+    <Route extact path= "/list/:id" component={List} />
+    </BrowserRouter>  
   );
 }
 

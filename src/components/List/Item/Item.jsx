@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom'
 
 // Components
 import UpdateItem from '../UpdateItem/UpdateItem';
@@ -38,8 +39,10 @@ class Item extends Component {
 
   render() {
     const {id, name, description, value} = this.props;
+    const currentId = this.props.match.params.id;
     return (
       <tr onClick={this.increaseClick}>
+        <td>{currentId === id ? 'Selected': ''}</td>
         <td>{id}</td>
         <td>{name}</td>
         <td>{description}</td>
@@ -54,4 +57,4 @@ class Item extends Component {
   }
 }
 
-export default Item;
+export default withRouter(Item);

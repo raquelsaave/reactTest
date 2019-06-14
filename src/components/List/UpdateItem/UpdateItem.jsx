@@ -11,7 +11,7 @@ import ItemForm from '../ItemForm/ItemForm';
 class UpdateItem extends Component {
   constructor(props) {
     super(props);
-
+    
     this.state = {
       error: false,
     };
